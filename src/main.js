@@ -14,7 +14,7 @@ refs.form.addEventListener('submit', handleSubmit);
 function handleSubmit(event) {
   event.preventDefault();
   const input = event.target.elements['search-text'].value.trim();
-  clearGallery();
+  // clearGallery();
   if (input === '') {
     errorMessage('Невалидный ввод');
     return;

@@ -29,14 +29,15 @@ export function createGallery(images) {
       `
     )
     .join('');
+  clearGallery();
   refs.galleryList.insertAdjacentHTML('beforeend', createLi);
-  let lightbox = new SimpleLightbox('.gallery a', {
-    captions: true,
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
   lightbox.refresh();
 }
+let lightbox = new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 export function clearGallery() {
   refs.galleryList.innerHTML = '';
