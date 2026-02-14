@@ -4,7 +4,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 
 export function createGallery(images) {
-  return images
+  const createLi = images
     .map(
       ({
         webformatURL,
@@ -29,20 +29,23 @@ export function createGallery(images) {
       `
     )
     .join('');
+  refs.galleryList.insertAdjacentHTML('beforeend', createLi);
+  let lightbox = new SimpleLightbox('.gallery a', {
+    captions: true,
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+  lightbox.refresh();
 }
-export const lightbox = new SimpleLightbox('.gallery a', {
-  captions: true,
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+
 export function clearGallery() {
   refs.galleryList.innerHTML = '';
 }
 export function showLoader() {
-  refs.span.classList.remove('hidden');
+  refs.loader.classList.remove('hidden');
 }
 export function hideLoader() {
-  refs.span.classList.add('hidden');
+  refs.loader.classList.add('hidden');
 }
 
 export const errorMessage = msg => {

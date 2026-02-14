@@ -6,7 +6,6 @@ import {
   showLoader,
   hideLoader,
   clearGallery,
-  lightbox,
   errorMessage,
 } from './js/render-functions';
 import { refs } from './js/refs';
@@ -28,18 +27,15 @@ function handleSubmit(event) {
           'Sorry, there are no images matching your search query. Please try again!'
         );
       }
-      refs.galleryList.insertAdjacentHTML(
-        'beforeend',
-        createGallery(data.hits)
-      );
-      lightbox.refresh();
+      createGallery(data.hits);
     })
-    .catch(error =>
+    .catch(error => {
       errorMessage(
-        'Sorry, there are no images matching your search query. Please try again!'
-      )
-    )
+        `${error}'catch Sorry, there are no images matching your search query. Please try again!`
+      );
+    })
     .finally(() => {
       hideLoader();
     });
+  event.target.reset();
 }
